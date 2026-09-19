@@ -1,0 +1,278 @@
+:root {
+    --primary-color: #e8f5e8;       
+    --accent-color: #2c5a2c;        
+    --bg-color: #f5faf5;            
+    --text-color: #2c3e2c;          
+    --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9e7c 100%);
+    color: var(--white);
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Пример absolute позиционирования: декоративный элемент в шапке */
+header::after {
+    content: "🌿";
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2em;
+    opacity: 0.3;
+}
+
+header img {
+    border: 4px solid var(--white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.95;
+}
+
+/* Основной блок */
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.content {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.section {
+    flex: 2;
+}
+
+section {
+    background: var(--white);
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(74, 124, 89, 0.1);
+    border-left: 4px solid #4a7c59;
+    position: static;
+}
+
+section h2 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.6em;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+/* Списки */
+ul, ol {
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+    color: #3d5a3d;
+    list-style-type: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Эффект прорастания при загрузке */
+@keyframes sprout {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.skills-list li {
+    animation: sprout 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* Задержка анимации для каждого пункта */
+.skills-list li:nth-child(1) { animation-delay: 0.1s; }
+.skills-list li:nth-child(2) { animation-delay: 0.2s; }
+.skills-list li:nth-child(3) { animation-delay: 0.3s; }
+.skills-list li:nth-child(4) { animation-delay: 0.4s; }
+
+/* Иконка листа при :hover */
+.skills-list li::before {
+    content: "";
+    position: absolute;
+    left: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    transition: all 0.3s ease;
+}
+
+.skills-list li:hover::before {
+    content: "🍃";
+    width: auto;
+    height: auto;
+}
+
+/* Уменьшение letter-spacing при :active */
+.skills-list li:active {
+    letter-spacing: -1px;
+    color: var(--accent-color);
+}
+
+.projects-list li {
+    list-style-type: decimal;
+    padding-left: 10px;
+}
+
+/* Aside */
+aside {
+    flex: 1;
+    background: linear-gradient(180deg, var(--primary-color) 0%, #d4edda 100%);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(74, 124, 89, 0.1);
+    position: relative;
+}
+
+aside h2 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.4em;
+}
+
+aside p {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background: var(--white);
+    border-radius: 5px;
+    color: #3d5a3d;
+    font-weight: 500;
+}
+
+/* Форма */
+.form section {
+    border-left: 4px solid #6b9e7c;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 12px 15px;
+    border: 2px solid #c8e6c8;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: var(--white);
+}
+
+/* Состояния формы */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button[type="submit"] {
+    background: linear-gradient(135deg, #4a7c59 0%, #6b9e7c 100%);
+    color: var(--white);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, #3d6b4a 0%, #5a8e6a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:visited {
+    color: #5a8e6a; 
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    section {
+        padding: 20px;
+    }
+}
