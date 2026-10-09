@@ -1,8 +1,10 @@
 :root {
-    --primary-color: #e8f5e8;       
-    --accent-color: #2c5a2c;        
+    --white: #ffffff;
+    --primary-color: #a5d6a7;       
+    --accent-color: #1b5e20;
+    --accent-light: #2e7d32;
     --bg-color: #f5faf5;            
-    --text-color: #2c3e2c;          
+    --text-color: #1a2e1a;          
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -21,7 +23,7 @@ body {
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #4a7c59 0%, #6b9e7c 100%);
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
     color: var(--white);
     padding: 40px 20px;
     display: flex;
@@ -69,7 +71,7 @@ main {
     margin-bottom: 40px;
 }
 
-.section {
+.main-block {
     flex: 2;
 }
 
@@ -79,7 +81,7 @@ section {
     margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(74, 124, 89, 0.1);
-    border-left: 4px solid #4a7c59;
+    border-left: 4px solid var(--accent-color);
     position: static;
 }
 
@@ -98,7 +100,7 @@ ul, ol {
 
 li {
     margin-bottom: 8px;
-    color: #3d5a3d;
+    color: var(--text-color);
     list-style-type: none;
     position: relative;
     transition: all 0.3s ease;
@@ -177,13 +179,13 @@ aside p {
     padding: 8px 12px;
     background: var(--white);
     border-radius: 5px;
-    color: #3d5a3d;
+    color: var(--text-color);
     font-weight: 500;
 }
 
 /* Форма */
 .form section {
-    border-left: 4px solid #6b9e7c;
+    border-left: 4px solid var(--accent-light);
 }
 
 form {
@@ -202,12 +204,13 @@ input[type="text"],
 input[type="email"],
 textarea {
     padding: 12px 15px;
-    border: 2px solid #c8e6c8;
+    border: 2px solid var(--primary-color);
     border-radius: 6px;
     font-size: 1em;
     font-family: inherit;
     transition: all 0.3s ease;
     background: var(--white);
+    color: var(--text-color);
 }
 
 /* Состояния формы */
@@ -216,7 +219,7 @@ input[type="email"]:focus,
 textarea:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.2);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.2);
 }
 
 textarea {
@@ -225,7 +228,7 @@ textarea {
 }
 
 button[type="submit"] {
-    background: linear-gradient(135deg, #4a7c59 0%, #6b9e7c 100%);
+    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
     color: var(--white);
     border: none;
     padding: 12px 30px;
@@ -239,13 +242,19 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background: linear-gradient(135deg, #3d6b4a 0%, #5a8e6a 100%);
+    background: linear-gradient(135deg, #256b29 0%, #144d18 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
 }
 
 button[type="submit"]:active {
     transform: translateY(0);
+}
+
+button[type="submit"]:focus {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(27, 94, 32, 0.2);
 }
 
 a {
@@ -254,7 +263,7 @@ a {
 }
 
 a:visited {
-    color: #5a8e6a; 
+    color: #004d40; 
 }
 
 a:hover {
