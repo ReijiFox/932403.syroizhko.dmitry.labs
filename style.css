@@ -1,10 +1,10 @@
 :root {
     --white: #ffffff;
-    --primary-color: #a5d6a7;       
+    --primary-color: #a5d6a7;
     --accent-color: #1b5e20;
     --accent-light: #2e7d32;
-    --bg-color: #f5faf5;            
-    --text-color: #1a2e1a;          
+    --bg-color: #f5faf5;
+    --text-color: #1a2e1a;
     --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -33,7 +33,6 @@ header {
     position: relative;
 }
 
-/* Пример absolute позиционирования: декоративный элемент в шапке */
 header::after {
     content: "🌿";
     position: absolute;
@@ -57,6 +56,38 @@ header p {
     font-size: 1.2em;
     opacity: 0.95;
 }
+
+
+/* Навигационное меню Flexbox */
+
+.main-nav {
+    background-color: var(--accent-color);
+    padding: 12px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    list-style-type: none;
+    flex-wrap: wrap; /* Адаптивность меню */
+}
+
+.main-nav a {
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: var(--accent-light);
+    text-decoration: none;
+}
+
 
 /* Основной блок */
 main {
@@ -106,7 +137,6 @@ li {
     transition: all 0.3s ease;
 }
 
-/* Эффект прорастания при загрузке */
 @keyframes sprout {
     from {
         opacity: 0;
@@ -123,13 +153,11 @@ li {
     opacity: 0;
 }
 
-/* Задержка анимации для каждого пункта */
 .skills-list li:nth-child(1) { animation-delay: 0.1s; }
 .skills-list li:nth-child(2) { animation-delay: 0.2s; }
 .skills-list li:nth-child(3) { animation-delay: 0.3s; }
 .skills-list li:nth-child(4) { animation-delay: 0.4s; }
 
-/* Иконка листа при :hover */
 .skills-list li::before {
     content: "";
     position: absolute;
@@ -147,7 +175,6 @@ li {
     height: auto;
 }
 
-/* Уменьшение letter-spacing при :active */
 .skills-list li:active {
     letter-spacing: -1px;
     color: var(--accent-color);
@@ -156,6 +183,97 @@ li {
 .projects-list li {
     list-style-type: decimal;
     padding-left: 10px;
+}
+
+/* Flex-карточки */
+.flex-cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.habit-card {
+    flex: 1 1 calc(33.333% - 20px); 
+    min-width: 220px;
+    background: var(--bg-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.habit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(27, 94, 32, 0.15);
+}
+
+.habit-card h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+.progress-bar {
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 26px;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: width 1.5s ease-in-out;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Grid-дашборд */
+.grid-dashboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-item {
+    background: var(--bg-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: scale(1.02);
+}
+
+.grid-item h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* Специальное выделение для карты зелёных зон */
+.map-aside {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border: 2px dashed var(--accent-color);
+    position: relative;
+}
+
+.map-aside::before {
+    content: "🗺️";
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5em;
+    opacity: 0.6;
 }
 
 /* Aside */
@@ -263,25 +381,47 @@ a {
 }
 
 a:visited {
-    color: #004d40; 
+    color: #004d40;
 }
 
 a:hover {
     text-decoration: underline;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
         text-align: center;
     }
-
     .content {
         flex-direction: column;
     }
-
     section {
         padding: 20px;
+    }
+}
+
+
+/* Медиазапросы для планшетов и небольших экранов */
+@media (max-width: 992px) {
+    .flex-cards .habit-card {
+        flex: 1 1 calc(50% - 20px); 
+    }
+}
+
+/* Медиазапросы для мобильных устройств */
+@media (max-width: 768px) {
+    .main-nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .flex-cards .habit-card {
+        flex: 1 1 100%;
+    }
+    
+    .grid-dashboard {
+        grid-template-columns: 1fr;
     }
 }
