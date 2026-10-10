@@ -4,31 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Эко-активист | Сыроижко Дмитрий</title>
-    
-    <!-- Подключение внешнего CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Внутренний блок стилей -->
-    <style>
-        footer {
-            background: var(--accent-color);
-            color: var(--white);
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Тень сверху */
-            position: relative;
-        }
-        
-        footer p {
-            font-size: 0.95em;
-            margin: 0;
-        }
-    </style>
 </head>
 <body>
+
     <header>
-        <!-- Inline стиль для аватара -->
         <img src="pictures/avatar.png" alt="Аватар владельца страницы" width="150" height="150" style="border-radius: 50%;">
         <div>
             <h1>Сыроижко Дмитрий</h1>
@@ -36,10 +16,21 @@
         </div>
     </header>
 
+    <!-- Навигационное меню Flexbox -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#projects">Проекты</a></li>
+            <li><a href="#habits">Экопривычки</a></li>
+            <li><a href="#initiatives">Инициативы</a></li>
+            <li><a href="#contact">Обратная связь</a></li>
+        </ul>
+    </nav>
+
     <main>
         <div class="content">
             <div class="main-block">
-                <section>
+                <section id="skills">
                     <h2>Навыки</h2>
                     <ul class="skills-list">
                         <li>Проектный менеджмент</li>
@@ -49,13 +40,58 @@
                     </ul>
                 </section>
 
-                <section>
+                <section id="projects">
                     <h2>Проекты</h2>
                     <ol class="projects-list">
                         <li>"Зелёный след"</li>
                         <li>"Хранители леса"</li>
                         <li>"Чистая волна"</li>
                     </ol>
+                </section>
+
+                <!-- Flex-карточки -->
+                <section id="habits" class="habits-section">
+                    <h2>Мои экопривычки</h2>
+                    <div class="flex-cards">
+                        <article class="habit-card">
+                            <h3>Отказ от пластика</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;">80%</div>
+                            </div>
+                        </article>
+                        <article class="habit-card">
+                            <h3>Сортировка мусора</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%;">65%</div>
+                            </div>
+                        </article>
+                        <article class="habit-card">
+                            <h3>Экономия воды</h3>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%;">90%</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Grid-дашборд -->
+                <section id="initiatives" class="initiatives-section">
+                    <h2>Эко-инициативы города</h2>
+                    <div class="grid-dashboard">
+                        <div class="grid-item">
+                            <h3>Пункты приёма</h3>
+                            <p>Сеть из 50+ пунктов для сбора вторсырья по всему городу.</p>
+                        </div>
+                        <div class="grid-item">
+                            <h3>Акции</h3>
+                            <p>Еженедельные субботники, лекции и мастер-классы.</p>
+                        </div>
+                        <!-- Семантически верный тег aside для карты -->
+                        <aside class="grid-item map-aside">
+                            <h3>Карта зелёных зон</h3>
+                            <p>Интерактивная карта парков, лесов и заповедников.</p>
+                        </aside>
+                    </div>
                 </section>
             </div>
 
@@ -65,21 +101,21 @@
                 <p>Сокращение (Reduce)</p>
                 <p>Переработка (Recycle)</p>
             </aside>
-        </div>  
-        
+        </div>
+
         <div class="form">
-            <section>
+            <section id="contact">
                 <h2>Обратная связь</h2>
-                <form>
+                <form action="#" method="post">
                     <label for="name">Имя:</label>
-                    <input type="text" name="name" id="name" placeholder="Введите ваше имя" required>
-
+                    <input type="text" id="name" name="name" required>
+                    
                     <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" placeholder="Введите ваш Email" required>
-
+                    <input type="email" id="email" name="email" required>
+                    
                     <label for="message">Сообщение:</label>
-                    <textarea name="message" id="message" rows="5" placeholder="Введите ваше сообщение" required></textarea>
-
+                    <textarea id="message" name="message" required></textarea>
+                    
                     <button type="submit">Отправить</button>
                 </form>
             </section>
@@ -87,7 +123,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Сыроижко Дмитрий</p>
+        <p>© 2026 Сыроижко Дмитрий</p>
     </footer>
+
 </body>
 </html>
