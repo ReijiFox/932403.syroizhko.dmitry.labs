@@ -1,3 +1,4 @@
+```css
 :root {
     --white: #ffffff;
     --primary-color: #a5d6a7;
@@ -14,16 +15,31 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-main);
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--bg-color);
+    overflow-wrap: break-word;
 }
 
-/* Header */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Шапка сайта */
+
 header {
-    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--accent-light) 0%,
+        var(--accent-color) 100%
+    );
     color: var(--white);
     padding: 40px 20px;
     display: flex;
@@ -40,9 +56,11 @@ header::after {
     right: 20px;
     font-size: 2em;
     opacity: 0.3;
+    pointer-events: none;
 }
 
 header img {
+    max-width: 100%;
     border: 4px solid var(--white);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -57,30 +75,40 @@ header p {
     opacity: 0.95;
 }
 
-
 /* Навигационное меню Flexbox */
 
 .main-nav {
     background-color: var(--accent-color);
     padding: 12px 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .main-nav ul {
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    gap: 25px;
-    list-style-type: none;
-    flex-wrap: wrap; /* Адаптивность меню */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    list-style: none;
+}
+
+.main-nav li {
+    margin-bottom: 0;
 }
 
 .main-nav a {
+    display: inline-block;
     color: var(--white);
     font-weight: 600;
     text-decoration: none;
     padding: 6px 12px;
     border-radius: 4px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav a:visited {
+    color: var(--white);
 }
 
 .main-nav a:hover {
@@ -88,9 +116,15 @@ header p {
     text-decoration: none;
 }
 
+.main-nav a:focus-visible {
+    outline: 3px solid var(--white);
+    outline-offset: 3px;
+}
 
 /* Основной блок */
+
 main {
+    width: 100%;
     max-width: 1200px;
     margin: 30px auto;
     padding: 0 20px;
@@ -100,11 +134,15 @@ main {
     display: flex;
     gap: 30px;
     margin-bottom: 40px;
+    min-width: 0;
 }
 
 .main-block {
-    flex: 2;
+    flex: 2 1 0;
+    min-width: 0;
 }
+
+/* Секции */
 
 section {
     background: var(--white);
@@ -113,7 +151,8 @@ section {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(74, 124, 89, 0.1);
     border-left: 4px solid var(--accent-color);
-    position: static;
+    position: relative;
+    min-width: 0;
 }
 
 section h2 {
@@ -125,7 +164,9 @@ section h2 {
 }
 
 /* Списки */
-ul, ol {
+
+ul,
+ol {
     padding-left: 25px;
 }
 
@@ -134,14 +175,17 @@ li {
     color: var(--text-color);
     list-style-type: none;
     position: relative;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
+
+/* Анимация элементов списка */
 
 @keyframes sprout {
     from {
         opacity: 0;
         transform: translateY(20px) scale(0.9);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -153,10 +197,21 @@ li {
     opacity: 0;
 }
 
-.skills-list li:nth-child(1) { animation-delay: 0.1s; }
-.skills-list li:nth-child(2) { animation-delay: 0.2s; }
-.skills-list li:nth-child(3) { animation-delay: 0.3s; }
-.skills-list li:nth-child(4) { animation-delay: 0.4s; }
+.skills-list li:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.skills-list li:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.skills-list li:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.skills-list li:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
 .skills-list li::before {
     content: "";
@@ -185,16 +240,18 @@ li {
     padding-left: 10px;
 }
 
-/* Flex-карточки */
+/* Карточки эко-привычек: Flexbox */
+
 .flex-cards {
     display: flex;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
+    min-width: 0;
 }
 
 .habit-card {
-    flex: 1 1 calc(33.333% - 20px); 
-    min-width: 220px;
+    flex: 1 1 calc((100% - 40px) / 3);
+    min-width: 0;
     background: var(--bg-color);
     border: 2px solid var(--primary-color);
     border-radius: 8px;
@@ -213,17 +270,23 @@ li {
     font-size: 1.2em;
 }
 
+/* Полосы прогресса */
+
 .progress-bar {
     background: #e0e0e0;
     border-radius: 10px;
     overflow: hidden;
     height: 26px;
     position: relative;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .progress {
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    background: linear-gradient(
+        90deg,
+        var(--accent-light),
+        var(--accent-color)
+    );
     height: 100%;
     display: flex;
     align-items: center;
@@ -232,17 +295,20 @@ li {
     font-weight: bold;
     font-size: 0.9em;
     transition: width 1.5s ease-in-out;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Grid-дашборд */
+/* Панель городских эко-инициатив */
+
 .grid-dashboard {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
+    min-width: 0;
 }
 
 .grid-item {
+    min-width: 0;
     background: var(--bg-color);
     border: 2px solid var(--primary-color);
     border-radius: 8px;
@@ -260,9 +326,14 @@ li {
     font-size: 1.2em;
 }
 
-/* Специальное выделение для карты зелёных зон */
+/* Карта зелёных зон */
+
 .map-aside {
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    background: linear-gradient(
+        135deg,
+        #e8f5e9 0%,
+        #c8e6c9 100%
+    );
     border: 2px dashed var(--accent-color);
     position: relative;
 }
@@ -274,12 +345,19 @@ li {
     right: 15px;
     font-size: 1.5em;
     opacity: 0.6;
+    pointer-events: none;
 }
 
-/* Aside */
+/* Боковая панель */
+
 aside {
-    flex: 1;
-    background: linear-gradient(180deg, var(--primary-color) 0%, #d4edda 100%);
+    flex: 1 1 0;
+    min-width: 0;
+    background: linear-gradient(
+        180deg,
+        var(--primary-color) 0%,
+        #d4edda 100%
+    );
     padding: 25px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(74, 124, 89, 0.1);
@@ -301,7 +379,8 @@ aside p {
     font-weight: 500;
 }
 
-/* Форма */
+/* Форма обратной связи */
+
 .form section {
     border-left: 4px solid var(--accent-light);
 }
@@ -321,17 +400,19 @@ label {
 input[type="text"],
 input[type="email"],
 textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
     padding: 12px 15px;
     border: 2px solid var(--primary-color);
     border-radius: 6px;
     font-size: 1em;
     font-family: inherit;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     background: var(--white);
     color: var(--text-color);
 }
 
-/* Состояния формы */
 input[type="text"]:focus,
 input[type="email"]:focus,
 textarea:focus {
@@ -346,7 +427,11 @@ textarea {
 }
 
 button[type="submit"] {
-    background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent-color) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--accent-light) 0%,
+        var(--accent-color) 100%
+    );
     color: var(--white);
     border: none;
     padding: 12px 30px;
@@ -354,13 +439,17 @@ button[type="submit"] {
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     align-self: flex-start;
     margin-top: 10px;
 }
 
 button[type="submit"]:hover {
-    background: linear-gradient(135deg, #256b29 0%, #144d18 100%);
+    background: linear-gradient(
+        135deg,
+        #256b29 0%,
+        #144d18 100%
+    );
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
 }
@@ -369,11 +458,13 @@ button[type="submit"]:active {
     transform: translateY(0);
 }
 
-button[type="submit"]:focus {
+button[type="submit"]:focus-visible {
     outline: 3px solid var(--accent-color);
     outline-offset: 3px;
     box-shadow: 0 0 0 5px rgba(27, 94, 32, 0.2);
 }
+
+/* Ссылки */
 
 a {
     color: var(--accent-color);
@@ -388,40 +479,119 @@ a:hover {
     text-decoration: underline;
 }
 
+a:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* Планшеты и небольшие экраны */
+
 @media (max-width: 768px) {
     header {
         flex-direction: column;
         text-align: center;
+        padding: 35px 20px;
     }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
     .content {
         flex-direction: column;
     }
+
+    .main-block,
+    aside {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
     section {
         padding: 20px;
     }
 }
 
+/* Мобильные устройства */
 
-/* Медиазапросы для планшетов и небольших экранов */
-@media (max-width: 992px) {
-    .flex-cards .habit-card {
-        flex: 1 1 calc(50% - 20px); 
+@media (max-width: 600px) {
+    main {
+        padding: 0 12px;
+        margin: 20px auto;
     }
-}
 
-/* Медиазапросы для мобильных устройств */
-@media (max-width: 768px) {
+    header {
+        padding: 30px 15px;
+    }
+
+    header h1 {
+        font-size: 1.6em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    .main-nav {
+        padding: 10px;
+    }
+
     .main-nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 8px;
+    }
+
+    .main-nav a {
+        padding: 6px 8px;
+        font-size: 0.95em;
+    }
+
+    section {
+        padding: 16px;
+    }
+
+    /* На мобильном карточки идут в один столбец. */
+
+    .flex-cards {
         flex-direction: column;
-        align-items: center;
-        gap: 10px;
     }
-    
-    .flex-cards .habit-card {
+
+    .habit-card {
         flex: 1 1 100%;
+        width: 100%;
+        padding: 16px;
     }
-    
+
+    /* На мобильном панель инициатив также в один столбец. */
+
     .grid-dashboard {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+    }
+
+    .grid-item {
+        padding: 16px;
+    }
+
+    aside {
+        padding: 18px;
+    }
+
+    button[type="submit"] {
+        max-width: 100%;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+```
