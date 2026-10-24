@@ -1,7 +1,8 @@
+
+const water = [2.5, 1.2, 3.4, 1.8, 1.4, 2.7, 3.2];
+
 function findMax(arr)
 {
-    if (arr.length == 0) return null;
-
     let max = arr[0];
 
     for (let i = 1; i < arr.length; i++)
@@ -10,79 +11,70 @@ function findMax(arr)
     return max;
 }
 
-function filterWater(arr)
+
+function filterWater(arr) 
 {
-    return arr.filter(function (value)
-    {
-        return value > 3;
-    });
+    return arr.filter(value => value > 3);
 }
 
 function sumWater(arr)
 {
     let sum = 0;
 
-    for (let i = 0; i < arr.length; i++)
-        sum += arr[i];
+    for (let i = 0; i < arr.length; i++) sum += arr[i];
 
     return sum;
 }
 
-let username = prompt("Введите ваше имя: ");
-
-if (username !== null && username.trim() !== "")
+function analyzeWater(arr)
 {
-    username = username.trim();
-    alert("Здравствуй, " + username + "!");
-    console.log("Имя пользователя: " + username);
-}
-else console.log("Имя не введено");
+    let lowDays = 0;
+    let i = 0;
 
-
-
-let water = [2.1, 1.5, 1.6, 3.1, 3.4, 1.1, 3.0];
-console.log("Потребление воды за неделю: ", water);
-
-
-
-let maxWater = findMax(water);
-let highWater = filterWater(water);
-let total = sumWater(water);
-
-console.log("Максимальное потребление в день: ", maxWater, " литров");
-console.log("Потребление более 3 литров: ", highWater);
-console.log("Дней с потреблением сверх нормы: ", highWater.length);
-console.log("Потребление за неделю: ", total.toFixed(2), " литров");
-
-
-let lowDays = 0;
-let i = 0;
-
-while (i < water.length)
-{
-    if (water[i] <= 1.5)
-    {
-        lowDays++
-
-        console.log("Низкое потребление: день ", i + 1, " - ", water[i], " литров")
+    while (i < arr.length) {
+        if (arr[i] <= 1.5) lowDays++;
+        i++;
     }
 
-    i++;
+    const lowPercent = lowDays / arr.length * 100;
+    const average = sumWater(arr) / arr.length;
+
+    return {
+        lowDays: lowDays,
+        lowPercent: lowPercent,
+        average: average
+    };
 }
 
-let lowPerc = lowDays/water.length * 100;
+function showResults(arr)
+{
+    const name = prompt("Введите ваше имя:");
 
-console.log("Дней с низким потреблением: ", lowDays);
-console.log("Процент дней с низким потреблением : ", lowPerc.toFixed(2) + "%");
+    if (name === null || name.trim() === "") {
+        alert("Имя не введено.");
+        return;
+    }
 
+    alert("Привет, " + name + "!");
 
-let avgWater = total/water.length;
+    const total = sumWater(arr);
+    const max = findMax(arr);
+    const highDays = filterWater(arr);
+    const analysis = analyzeWater(arr);
 
-console.log("Среднее потребление: ", avgWater.toFixed(2), " литров в день" );
+    console.log("Пользователь:", name);
+    console.log("Потребление воды за каждый день:", arr);
+    console.log("Общее потребление за неделю:", total.toFixed(2), "л");
+    console.log("Максимальное потребление за день:", max, "л");
+    console.log("Дни с потреблением более 3 литров:", highDays);
+    console.log("Количество дней с низким потреблением:", analysis.lowDays);
+    console.log("Процент дней с низким потреблением:", analysis.lowPercent.toFixed(2) + "%");
+    console.log("Среднее потребление за день:", analysis.average.toFixed(2), "л");
 
+    if (analysis.average < 2)
+        console.log("Рекомендуется увеличить потребление воды до 2–2,5 литров в день");
 
-if (avgWater < 2) console.log("Рекомендуется увеличить потребление воды до 2-2.5 литров в день");
-else console.log("Среднее потребление воды не переходит нижний предел в 2 литра в день");
+    alert("За неделю вы выпили " + total.toFixed(2) + " литров воды, в " + highDays.length + " днях потребление было более 3 литров.");
+}
 
-
-alert("За неделю выпито " + total.toFixed(2) + " литров воды, в " + highWater.length + " днях норма была превышена.");
+showResults(water);
