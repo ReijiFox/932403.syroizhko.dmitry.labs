@@ -1,8 +1,3 @@
-
-
-
-
-
 const water = [2.5, 1.2, 3.4, 1.8, 1.4, 2.7, 3.2];
 
 function findMax(arr)
