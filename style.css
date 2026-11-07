@@ -297,6 +297,39 @@ li {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
+/* Кнопки управления привычками */
+
+.habit-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.habit-controls button,
+.mark-button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+    margin-top: 15px;
+}
+
+.habit-controls button:hover,
+.mark-button:hover {
+    background-color: var(--accent-light);
+}
+
+/* Скрытие карточек привычек */
+
+.flex-cards.hidden {
+    display: none;
+}
+
 /* Панель городских эко-инициатив */
 
 .grid-dashboard {
@@ -483,6 +516,103 @@ a:focus-visible {
     outline-offset: 3px;
 }
 
+/* Тёмная тема */
+html.dark-theme {
+    --bg-color: #121a16;
+    --text-color: #f1f8f3;
+    --white: #26352d;
+    --primary-color: #81c784;
+    --accent-color: #2e7d32;
+    --accent-light: #43a047;
+}
+
+html.dark-theme body {
+    background-color: #121a16;
+    color: #f1f8f3;
+}
+
+html.dark-theme section {
+    background-color: #1e2b24;
+    color: #f1f8f3;
+}
+
+html.dark-theme h1,
+html.dark-theme h2,
+html.dark-theme h3 {
+    color: #a5d6a7;
+}
+
+html.dark-theme .habit-card,
+html.dark-theme .grid-item {
+    background-color: #2b3b31;
+    color: #ffffff;
+    border: 1px solid #527a5a;
+}
+
+html.dark-theme aside {
+    background-color: #26382d;
+    color: #ffffff;
+}
+
+html.dark-theme aside h2 {
+    color: #a5d6a7;
+}
+
+html.dark-theme aside p {
+    background-color: #34483a;
+    color: #ffffff;
+}
+
+html.dark-theme button {
+    background-color: #388e3c;
+    color: #ffffff;
+    border: 1px solid #81c784;
+}
+
+html.dark-theme button:hover {
+    background-color: #4caf50;
+    color: #ffffff;
+}
+
+html.dark-theme .habit-controls button,
+html.dark-theme .mark-button {
+    background-color: #388e3c;
+    color: #ffffff;
+}
+
+html.dark-theme input,
+html.dark-theme textarea {
+    background-color: #26352d;
+    color: #ffffff;
+    border: 1px solid #81c784;
+}
+
+html.dark-theme input::placeholder,
+html.dark-theme textarea::placeholder {
+    color: #c5d3c8;
+}
+
+html.dark-theme a {
+    color: #81d4fa;
+}
+
+html.dark-theme a:hover {
+    color: #b3e5fc;
+}
+
+html.dark-theme .progress-bar {
+    background-color: #455a4b;
+}
+
+html.dark-theme .progress {
+    background-color: #66bb6a;
+}
+
+
+html.dark-theme .flex-cards.hidden {
+    display: none;
+}
+
 /* Планшеты и небольшие экраны */
 
 @media (max-width: 768px) {
@@ -551,7 +681,7 @@ a:focus-visible {
         padding: 16px;
     }
 
-    /* На мобильном карточки идут в один столбец. */
+    /* На мобильном карточки идут в один столбец */
 
     .flex-cards {
         flex-direction: column;
@@ -563,7 +693,7 @@ a:focus-visible {
         padding: 16px;
     }
 
-    /* На мобильном панель инициатив также в один столбец. */
+    /* На мобильном панель инициатив также в один столбец */
 
     .grid-dashboard {
         grid-template-columns: minmax(0, 1fr);
@@ -581,7 +711,17 @@ a:focus-visible {
     button[type="submit"] {
         max-width: 100%;
     }
+
+    .habit-controls {
+        flex-direction: column;
+    }
+
+    .habit-controls button {
+        width: 100%;
+    }
 }
+
+/* Уменьшение анимации */
 
 @media (prefers-reduced-motion: reduce) {
     *,
