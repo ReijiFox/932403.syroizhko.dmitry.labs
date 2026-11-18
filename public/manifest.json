@@ -1,0 +1,23 @@
+
+{
+    "name": "Эко-активист",
+    "short_name": "Эко-активист",
+    "description": "Приложение для формирования экологических привычек",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#2e7d32",
+    "icons": [
+        {
+            "src": "/pictures/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/pictures/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

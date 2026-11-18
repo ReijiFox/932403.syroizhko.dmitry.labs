@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2e7d32">
+    <title>Эко-активист. О себе</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <header>
+        <h1>О себе</h1>
+        <p>Информация об авторе</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Об авторе</h2>
+            <p>Это страница, которая создана в рамках лабораторной работы номер 6.</p>
+            <a href="/">На главную страницу</a>
+        </section>
+    </main>
+    
+    <script>
+        if ("serviceWorker" in navigator) 
+        {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register("/service-worker.js").then(function(registration) {
+                    console.log("Service-worker зарегистрирован:", registration.scope);
+                })
+                .catch(function(error)
+                {
+                    console.log("Ошибка регистрации Service-worker:", error);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
